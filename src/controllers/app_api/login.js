@@ -1,7 +1,6 @@
 const { validateUser } = require("../../utils/validation/app_api");
 const { login_user } = require("../../services/app_api");
 const { RENDER_BAD_REQUEST } = require("../../utils/utils");
-
 const signup = async (req, res) => {
   try {
     //validate Request Body

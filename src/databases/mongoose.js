@@ -10,7 +10,7 @@ mongoose
     console.log("successfully connected to the database");
   })
   .catch((err) => {
-    console.log("error connecting to the database", err);
+    console.log("error connecting to the database");
     process.exit();
   });
 module.exports = { mongoose };

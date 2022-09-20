@@ -37,6 +37,10 @@ const is_user_authorized_saloon_user = async (userId) => {
   return await User.findOne({ _id: userId, type: 2 });
 };
 
+const is_user_authorized_admin = async (userId) => {
+  return await User.findOne({ _id: userId, type: 0 });
+};
+
 module.exports = {
   signupUser,
   checking_email_exist,
@@ -46,4 +50,5 @@ module.exports = {
   delete_user_by_id,
   is_user_authorized_customer,
   is_user_authorized_saloon_user,
+  is_user_authorized_admin
 };

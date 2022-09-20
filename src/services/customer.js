@@ -131,29 +131,9 @@ const _EditCustomer = async (body, user_id, files, resp) => {
     resp.error_message = "No Entry is present Against the id";
     return resp;
   }
-  if (
-    files == null ||
-    files.image == null ||
-    files.image == undefined ||
-    files.image == " "
-  ) {
-    resp.error = true;
-    resp.error_message = "Please Upload Image";
-    return resp;
-  }
-  let dir = "./src/utils/images/";
-  const image_name = await UPLOAD_AND_RESIZE_FILE(files.image.data, dir, {
-    width: 200,
-  });
-  if (image_name == false) {
-    resp.error = true;
-    resp.error_message = "Something get wrong";
-    return resp;
-  }
-  let image = dir + image_name;
   customer.first_name = body.first_name;
   customer.last_name = body.last_name;
-  customer.image = image;
+  customer.image = body.image;
   customer.phone = body.phone;
   customer.location = body.location;
   customer.save();

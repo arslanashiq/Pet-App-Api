@@ -24,7 +24,6 @@ const authenticate = async (req, res, next) => {
           return res.status(401).send({ message: "Your are un authorize" });
         }
         req.user = is_sssion.user_id;
-        console.log(req.user);
         next();
       } else {
         res.status(401).json({

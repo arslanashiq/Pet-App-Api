@@ -138,7 +138,6 @@ const _ChangePassword = async (body, user_id, resp) => {
   user = await user.save();
   return resp;
 };
-
 const ChangePassword = async (body, user_id) => {
   let resp = {
     error: false,

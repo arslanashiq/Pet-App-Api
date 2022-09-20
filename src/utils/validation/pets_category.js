@@ -4,7 +4,7 @@ function validatePetsCategory(body) {
     const schema = {
         pet_category_name: Joi.string().required().min(2).trim(),
         pet_category_description: Joi.string().required().min(2).trim(),
-        image: Joi.string().trim(),
+        image: Joi.string().trim().allow(""),
     };
     return Joi.validate(body, schema);
 }
@@ -12,7 +12,7 @@ function validateEditPetsCategory(body) {
     const schema = {
         pet_category_name: Joi.string().required().min(2).trim(),
         pet_category_description: Joi.string().required().min(2).trim(),
-        image: Joi.string().trim(),
+        image: Joi.string().trim().allow(""),
     };
     return Joi.validate(body, schema);
 }

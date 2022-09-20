@@ -13,9 +13,13 @@ const find_Customer_by_user_id = async (id) => {
 const find_Customer_by_user_id_and_update = async (id) => {
   return await Customer.findOne({ user_id: id });
 };
+const total_customer_count = async () => {
+  return await Customer.find().countDocuments();
+};
 module.exports = {
   Signup_Customer,
   find_Customer_by_user_id,
   customer_list,
-  find_Customer_by_user_id_and_update
+  find_Customer_by_user_id_and_update,
+  total_customer_count
 };

@@ -1,4 +1,4 @@
-// const env = process.env.NODE_ENV || 'development';
+//const env = process.env.NODE_ENV || 'development';
 const env = process.env.NODE_ENV || 'local';
 if (env === 'local' || env === 'dev' || env=== 'prod') {
     process.env.NODE_ENV = env;

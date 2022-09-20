@@ -6,13 +6,13 @@ const path = require("path");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const fileUpload = require("express-fileupload");
 const cron = require("node-cron");
 const index = require("./src/routes");
 const app = express();
 const { do_backup } = require("./src/utils/backup");
-
+const fileUpload = require("express-fileupload");
 app.get("/", index);
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "src", "views"));
@@ -29,7 +29,10 @@ app.use(
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
-app.use(fileUpload());
+app.use(fileUpload({
+  useTempFiles: true
+}))
+
 
 // versioning
 // will do 2 types of version
@@ -56,7 +59,6 @@ app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
-
   // render the error page
   res.status(err.status || 500);
   res.render("error");

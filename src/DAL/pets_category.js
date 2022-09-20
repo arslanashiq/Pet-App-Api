@@ -15,10 +15,14 @@ const find_pets_category_and_update = async (id) => {
 const find_pets_category_by_id_and_delete = async (id) => {
     return await PetsCategory.findByIdAndDelete(id);
 };
+const total_pets_category_count = async () => {
+    return await PetsCategory.find().countDocuments();
+};
 module.exports = {
     add_pet_category,
     pet_category_list,
     find_pet_category_by_id,
     find_pets_category_and_update,
-    find_pets_category_by_id_and_delete
+    find_pets_category_by_id_and_delete,
+    total_pets_category_count
 }

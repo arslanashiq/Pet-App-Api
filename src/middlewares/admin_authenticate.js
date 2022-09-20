@@ -1,11 +1,11 @@
 const { checking_session } = require("../DAL/session");
-const { is_admin_authorized } = require("../DAL/admin");
+const { is_user_authorized_admin } = require("../DAL/user");
 const jwt = require("jsonwebtoken");
 
 const admin_authenticate = async (req, res, next) => {
   try {
     const user_id = req.user;
-    let admin = await is_admin_authorized(user_id);
+    let admin = await is_user_authorized_admin(user_id);
     if (!admin) {
       return res
         .status(401)
@@ -19,5 +19,4 @@ const admin_authenticate = async (req, res, next) => {
       .json({ code: 401, message: "Invalid Token", Error_Error: e });
   }
 };
-
 module.exports = { admin_authenticate };

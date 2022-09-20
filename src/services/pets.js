@@ -1,7 +1,12 @@
 const { add_pet, find_pet_list_by_pets_category_id, all_pet_list, find_pets_by_id_and_user_id,
     delete_pets_by_id_and_user_id } = require("../DAL/pets")
 const { find_pet_category_by_id } = require("../DAL/pets_category");
-const { UPLOAD_AND_RESIZE_FILE } = require("../utils/utils");
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+    cloud_name: 'dgpah6oqs',
+    api_key: '541973351462813',
+    api_secret: 'vVj5zNpdIKeKhRcq412PJnaCL9Y',
+});
 // *******************************{ADD PETS}**************************************
 const _AddPets = async (body, user_id, resp) => {
     let pets_category = await find_pet_category_by_id(body.pets_category_id);
@@ -66,27 +71,10 @@ const AllPetList = async () => {
 };
 // *******************************{UPLOAD PETS MULTIPLE IMAGES}**************************************
 const _UploadImage = async (files, resp) => {
-    if (
-        files == null ||
-        files.image == null ||
-        files.image == undefined ||
-        files.image == " "
-    ) {
-        resp.error = true;
-        resp.error_message = "Please Upload Image";
-        return resp;
-    }
-    let dir = "./src/utils/images/";
-    const image_name = await UPLOAD_AND_RESIZE_FILE(files.image.data, dir, {
-        width: 200,
-    });
-    if (image_name == false) {
-        resp.error = true;
-        resp.error_message = "Something get wrong";
-        return resp;
-    }
-    let image = dir + image_name;
-    resp.data = image;
+    let image = {};
+    const file = files.image;
+    const check = await cloudinary.uploader.upload(file.tempFilePath, (err, result) => { })
+    resp.data = check.url;
     return resp;
 };
 const UploadImage = async (files) => {
