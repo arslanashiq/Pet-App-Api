@@ -12,7 +12,7 @@ const authenticate = async (req, res, next) => {
     try {
       let authorized = false;
       let login_token = "";
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(token, "3ZGErMDCyxTOZYFr56HGD");
       login_token = decoded.login_token;
       // logic to to authorize or not
       authorized = true;
