@@ -1,0 +1,8 @@
+{
+  "local": {
+    "PORT": 4001,
+    "MONGODB_URI": "mongodb+srv://adminadmin:adminadmin@cluster0.m9ykp.mongodb.net/eshop-database?retryWrites=true&w=majority",
+    "JWT_SECRET": "3ZGErMDCyxTOZYFr56HGD",
+    "NODE_ENV": "local"
+  }
+}

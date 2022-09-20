@@ -1,0 +1,8 @@
+{
+  "local": {
+    "PORT": 4001,
+    "MONGODB_URI": "mongodb://localhost:27017/pet_system",
+    "JWT_SECRET": "3ZGErMDCyxTOZYFr56HGD",
+    "NODE_ENV": "local"
+  }
+}
