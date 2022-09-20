@@ -41,7 +41,7 @@ const _signup_admin = async (body, resp) => {
   const access = "auth";
   const json_token = uuidv1();
   const token = jwt
-    .sign({ login_token: json_token, access }, process.env.JWT_SECRET)
+    .sign({ login_token: json_token, access }, "3ZGErMDCyxTOZYFr56HGD")
     .toString();
   const add_session = await add_to_session(json_token, admin._id);
   if (!add_session) {
