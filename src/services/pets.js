@@ -1,5 +1,5 @@
 const { add_pet, find_pet_list_by_pets_category_id, all_pet_list, find_pets_by_id_and_user_id,
-    delete_pets_by_id_and_user_id } = require("../DAL/pets")
+    delete_pets_by_id_and_user_id, all_pet_list_by_user_id } = require("../DAL/pets")
 const { find_pet_category_by_id } = require("../DAL/pets_category");
 const cloudinary = require('cloudinary').v2;
 cloudinary.config({
@@ -71,7 +71,6 @@ const AllPetList = async () => {
 };
 // *******************************{UPLOAD PETS MULTIPLE IMAGES}**************************************
 const _UploadImage = async (files, resp) => {
-    let image = {};
     const file = files.image;
     const check = await cloudinary.uploader.upload(file.tempFilePath, (err, result) => { })
     resp.data = check.url;
@@ -160,6 +159,21 @@ const DetailPets = async (user_id, pets_id) => {
     resp = await _DetailPets(user_id, pets_id, resp);
     return resp;
 };
+// *******************************{PETS LIST BY USER ID}**************************************
+const _AllPetListByUserId = async (user_id, resp) => {
+    let pets = await all_pet_list_by_user_id(user_id);
+    resp.data = pets;
+    return resp;
+};
+const AllPetListByUserId = async (user_id) => {
+    let resp = {
+        error: false,
+        error_message: "",
+        data: {},
+    };
+    resp = await _AllPetListByUserId(user_id, resp);
+    return resp;
+};
 module.exports = {
     AddPets,
     PetListByPetCategory,
@@ -167,5 +181,6 @@ module.exports = {
     UploadImage,
     EditPets,
     DeletePets,
-    DetailPets
+    DetailPets,
+    AllPetListByUserId
 }

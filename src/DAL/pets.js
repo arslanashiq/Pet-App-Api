@@ -18,12 +18,15 @@ const delete_pets_by_id_and_user_id = async (pets_id, user_id) => {
 const total_pets_count = async () => {
     return await Pets.find().countDocuments();
 };
-
+const all_pet_list_by_user_id = async (user_id) => {
+    return await Pets.find({ user_id: user_id })
+};
 module.exports = {
     add_pet,
     find_pet_list_by_pets_category_id,
     all_pet_list,
     find_pets_by_id_and_user_id,
     delete_pets_by_id_and_user_id,
-    total_pets_count
+    total_pets_count,
+    all_pet_list_by_user_id
 }

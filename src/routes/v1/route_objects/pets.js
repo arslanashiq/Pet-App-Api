@@ -7,6 +7,7 @@ const detail_pet = require("../../../controllers/pets/detail_pet");
 const pet_list_by_pet_category = require("../../../controllers/pets/pet_list_by_pet_category");
 const all_pet_list = require("../../../controllers/pets/all_pet_list");
 const upload_image = require("../../../controllers/pets/upload_image");
+const all_pet_list_by_user_id = require("../../../controllers/pets/all_pet_list_by_user_id");
 register_route({
     router,
     route: "/add_pet",
@@ -38,7 +39,6 @@ register_route({
 register_route({
     router,
     route: "/upload_image",
-    cutsomer_auth_enable: true,
     auth_enable: true,
     post_method: upload_image,
 });
@@ -53,5 +53,11 @@ register_route({
     route: "/all_pet_list",
     auth_enable: true,
     get_method: all_pet_list,
+});
+register_route({
+    router,
+    route: "/all_pet_list_by_user_id",
+    auth_enable: true,
+    get_method: all_pet_list_by_user_id,
 });
 module.exports = router;
